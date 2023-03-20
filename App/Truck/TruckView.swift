@@ -12,8 +12,6 @@ struct TruckView: View {
     @ObservedObject var model: FoodTruckModel
     @Binding var navigationSelection: Panel?
     
-    @AppStorage("motd") private var messageOfTheDay = "We're currently in Cupertino, come try out our new Triple chocolate donut!"
-    
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var sizeClass
     #endif
