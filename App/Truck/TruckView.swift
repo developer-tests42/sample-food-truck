@@ -12,6 +12,8 @@ struct TruckView: View {
     @ObservedObject var model: FoodTruckModel
     @Binding var navigationSelection: Panel?
     
+    @AppStorage("motd") private var messageOfTheDay = "We're currently in Cupertino, come try out our new Triple chocolate donut!"
+    
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var sizeClass
     #endif
@@ -20,7 +22,15 @@ struct TruckView: View {
         WidthThresholdReader(widthThreshold: 520) { proxy in
             ScrollView(.vertical) {
                 VStack(spacing: 16) {
+                    
                     BrandHeader()
+                    
+                    Text(messageOfTheDay)
+                        .font(.title2)
+                        .bold()
+                        .multilineTextAlignment(.center)
+                        .padding(10)
+                        .foregroundColor(.accentColor)
                     
                     Grid(horizontalSpacing: 12, verticalSpacing: 12) {
                         if proxy.isCompact {
